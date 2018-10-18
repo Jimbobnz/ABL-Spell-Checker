@@ -531,6 +531,8 @@ PROCEDURE correctNextSpelling :
   Parameters:  <none>
   Notes:       
 ------------------------------------------------------------------------------*/
+    DEFINE VARIABLE inNewLines AS INTEGER     NO-UNDO.
+
     DO WITH FRAME {&FRAME-NAME}:
     
         DISABLE 
@@ -554,8 +556,11 @@ PROCEDURE correctNextSpelling :
         
         ENABLE
             {&BUTTONS}.
+            
+        /* Count the number of lines  */    
+        inNewLines = NUM-ENTRIES( SUBSTRING( edSource:SCREEN-VALUE, 1, ttWordMatch.WordStartPos), '~n' ) - 1 .
     
-        edSource:SET-SELECTION (ttWordMatch.WordStartPos + giOffSetPosition, ttWordMatch.WordEndPos + giOffSetPosition).                   
+        edSource:SET-SELECTION (ttWordMatch.WordStartPos + giOffSetPosition + inNewLines, ttWordMatch.WordEndPos + giOffSetPosition + inNewLines).                   
         
         fiStatusMessage:SCREEN-VALUE = ttWordMatch.StatusMessage. 
               
