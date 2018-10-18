@@ -178,7 +178,7 @@ DO:
 
     DO WITH FRAME {&FRAME-NAME}:
     
-        RUN ABLSpellChecker.w (INPUT-OUTPUT edYourEditor ).
+        RUN ABLWebSpellChecker.w (INPUT-OUTPUT edYourEditor ).
     
         DISPLAY 
             edYourEditor.
